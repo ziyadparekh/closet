@@ -1,0 +1,26 @@
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap-sprockets';
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import "../views/header";
+
+#outer-row {
+  padding-top: 85px;
+}
+
+header {
+  text-align: center;
+}
+
+header hr {
+  margin: 20px 0 0;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: BryantProRegular,'Helvetica Neue',helvetica,arial,sans-serif,"Helvetica Neue";
+  font-weight: 400;
+  line-height: 1.1;
+  color: inherit;
+  text-transform: uppercase;
+}
+
+h2.heading {
+  text-transform: none;
+}

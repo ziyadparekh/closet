@@ -20,6 +20,8 @@
 
         {% block style_head %}
             {# Include base SCSS stylesheets:  #}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="/compiled/css/base.css">
             {% block style_middle %}{% endblock style_middle %}
         {% endblock style_head %}
 
@@ -40,7 +42,13 @@
     <div id="closet-nav">
         {% include 'topnav.html' %}
     </div>
-    {% block content %}{% endblock content%}
+    <div class="container-fluid" id="outer-container-fluid">
+        <div class="row" id="outer-row">
+            <div id="body" class="col-md-12">
+                {% block content %}{% endblock content%}
+            </div>
+        </div>
+    </div>
 </div>
 <div id="push"></div>
     {% include 'footer.html' %}

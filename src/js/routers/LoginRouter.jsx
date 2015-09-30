@@ -4,6 +4,7 @@ import * as Backbone from 'lib/ZPBackbone';
 import * as _ from 'underscore';
 import * as React from 'react';
 import { Dispatcher } from 'flux';
+import { LoginForm } from 'views/LoginForm';
 
 let LoginRouter = Backbone.Router.extend({
     routes: {
@@ -15,9 +16,8 @@ let LoginRouter = Backbone.Router.extend({
         });
         this.dispatcher = new Dispatcher();
     },
-    navigateToIndex: function (page) {
-        console.log("navigate to index");
-
+    navigateToIndex: function () {
+        React.render(<LoginForm router={this} />, document.getElementById("main-container"));
     }
 });
 
