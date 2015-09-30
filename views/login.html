@@ -1,0 +1,17 @@
+{% extends 'common/default.html' %}
+
+{% block style_middle %}
+{% parent %}
+
+<link rel="stylesheet" href="/compiled/css/login.css">
+{% endblock %}
+
+{% block content %}
+<div class="container column" id="main-container"></div>
+
+{% endblock %}
+
+{% block script_foot %}
+{% parent %}
+<script src="/compiled/js/login.js" type="text/javascript"></script>
+{% endblock %}

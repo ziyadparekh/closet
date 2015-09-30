@@ -5,6 +5,7 @@
 // Module Dependencies
 
 window.$ = window.jQuery = require('jquery');
+require('bootstrap-sass');
 
 // require('lib/TopNav');
 // ---------------------------------------------------

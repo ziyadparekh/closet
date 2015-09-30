@@ -6,14 +6,14 @@ var LoginRouter = require('routers/LoginRouter');
 var root = '/';
 var router;
 
-router = new HomeRouter({
+router = new LoginRouter({
     //options go here...
 });
 
 Loader().onReady(function () {
     Backbone.history.start({
         root: root,
-        pushState: true
+        pushState: false
     });
+    router.navigate("/", {trigger: true});
 });
-

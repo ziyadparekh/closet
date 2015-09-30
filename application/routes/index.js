@@ -17,7 +17,7 @@ exports.login = function(req, res){
         navMenu : topnav.navMenu,
         title: 'Welcome'
     });
-    res.render('home', js_vars);
+    res.render('login', js_vars);
 };
 
 exports.index = function(req, res){

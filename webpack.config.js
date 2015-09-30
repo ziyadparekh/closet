@@ -15,19 +15,7 @@ g.found.forEach(function (file) {
 
 });
 
-var babelConfig = {
-    whitelist: [
-        'es6.arrowFunctions',
-        'es6.properties.shorthand',
-        'es6.properties.computed',
-        'es6.destructuring',
-        'es6.parameters',
-        'es6.templateLiterals',
-        'es6.blockScoping',
-        'runtime',
-        'react'
-    ]
-};
+var babelConfig = {};
 
 module.exports = {
     cache: true,
@@ -59,6 +47,6 @@ module.exports = {
             { test : /\.js$/, loader: 'jstransform-loader'}
         ]
     },
-    devtool: '#eval',
+    devtool: '#inline-source-map',
     debug: true
 };

@@ -1,0 +1,25 @@
+#closet-nav {
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1020;
+
+  .navbar {
+    min-height: 61px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+  }
+
+  .navbar-brand {
+    float: left;
+    padding: 20.5px 15px;
+    font-size: 19px;
+    line-height: 20px;
+  }
+
+  .navbar-brand img {
+    margin-top: -5px;
+    height: 23px;
+  }
+
+}

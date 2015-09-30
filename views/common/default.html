@@ -20,7 +20,6 @@
 
         {% block style_head %}
             {# Include base SCSS stylesheets:  #}
-            <link rel="stylesheet" href="/compiled/css/app1.css">
             {% block style_middle %}{% endblock style_middle %}
         {% endblock style_head %}
 
@@ -30,7 +29,7 @@
     {% endblock head %}
 
 </head>
-<body id="example" class='index pushable {{ show_navbar ? 'has-navbar' : ''}}'>
+<body id="body" class='index pushable {{ show_navbar ? 'has-navbar' : ''}}'>
 
 {% block body_start %}
 {% endblock body_start %}
@@ -38,10 +37,12 @@
 {% block default_content %}
 
 <div class="pusher">
-    {% include 'topnav.html' %}
-      {% block content %}{% endblock content%}
+    <div id="closet-nav">
+        {% include 'topnav.html' %}
     </div>
-    <div id="push"></div>
+    {% block content %}{% endblock content%}
+</div>
+<div id="push"></div>
     {% include 'footer.html' %}
 </div>
 
@@ -56,8 +57,6 @@
     </script>
     {% block script_foot_middle %}
     {% endblock script_foot_middle %}
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 {% endblock script_foot %}
 
