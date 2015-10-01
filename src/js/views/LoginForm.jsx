@@ -6,11 +6,10 @@ import * as config from 'configs/LoginFormConfig';
 
 export class LoginForm extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      failedAttempt: false
-    };
+    super(props);
+    this.state = this.props.store.getInitialState();
   }
+
   getHeader() {
     return (
       <header>

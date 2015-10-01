@@ -5,7 +5,7 @@ import * as _ from 'underscore';
 import * as React from 'react';
 import { Dispatcher } from 'flux';
 import { LoginForm } from 'views/LoginForm';
-import { Store } from 'stores/LoginStore';
+import Store from 'stores/LoginStore';
 
 let LoginRouter = Backbone.Router.extend({
     routes: {
@@ -18,7 +18,11 @@ let LoginRouter = Backbone.Router.extend({
         this.dispatcher = new Dispatcher();
     },
     navigateToIndex: function () {
-        React.render(<LoginForm router={this} />, document.getElementById("main-container"));
+        let loginStore = new Store({dispatcher: this.dispatcher});
+        React.render(<LoginForm
+            router={this}
+            store={loginStore} />,
+            document.getElementById("main-container"));
     }
 });
 

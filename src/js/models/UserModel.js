@@ -1,11 +1,12 @@
 "use strict";
 
 var Backbone = require('lib/ZPBackbone');
+var endpoints = require('lib/endpoints');
 var UserModel;
 
 UserModel = Backbone.Model.extend({
   url: function () {
-    return "http://localhost:3020/api/login"
+    return endpoints.login();
   },
   parse: function (data) {
     data = data || {};
