@@ -5,6 +5,7 @@ import * as _ from 'underscore';
 import * as React from 'react';
 import { Dispatcher } from 'flux';
 import { LoginForm } from 'views/LoginForm';
+import { Store } from 'stores/LoginStore';
 
 let LoginRouter = Backbone.Router.extend({
     routes: {
