@@ -1,7 +1,15 @@
 'use strict';
 
+var request = require('request');
+var endpoints = require('../lib/endpoints');
 var _ = require('underscore');
 var topnav = require('./configs/schema').topnav;
+
+var requestOptions = {
+  url: endpoints.login(),
+  json: true,
+  method: "POST"
+};
 
 var buildVars = function () {
     var js_vars = {
@@ -18,6 +26,14 @@ exports.login = function(req, res){
         title: 'Welcome'
     });
     res.render('login', js_vars);
+};
+
+exports.loginUser = function (req, res, next) {
+    var body = { email: req.body.email, password: req.body.password };
+    var opts = _.extend({}, requestOptions, {body: body});
+    request.post(opts, function (err, response, body) {
+        res.send(body).end();
+    });
 };
 
 exports.index = function(req, res){
