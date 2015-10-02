@@ -31,13 +31,12 @@
     "q": "^1.4.1",
     "react": "*",
     "react-bootstrap": "*",
-    "request": "^2.64.0",
+    "request-promise": "^0.4.3",
     "swig": "*",
     "underscore": "*"
   },
   "devDependencies": {
     "mysql": "*",
-    "async": "*",
     "moment": "*",
     "body-parser": "*",
     "express": "*",

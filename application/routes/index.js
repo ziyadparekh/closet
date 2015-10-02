@@ -1,6 +1,6 @@
 'use strict';
 
-var request = require('request');
+var request = require('request-promise');
 var endpoints = require('../lib/endpoints');
 var _ = require('underscore');
 var topnav = require('./configs/schema').topnav;
@@ -28,12 +28,15 @@ exports.login = function(req, res){
     res.render('login', js_vars);
 };
 
-exports.loginUser = function (req, res, next) {
+exports.loginUser = function (req, res) {
     var body = { email: req.body.email, password: req.body.password };
     var opts = _.extend({}, requestOptions, {body: body});
-    request.post(opts, function (err, response, body) {
-        res.send(body).end();
-    });
+    request(opts)
+      .then(function (response) {
+        res.send(response.body);
+      }).catch(function (err) {
+        res.send(err.error);
+      });
 };
 
 exports.index = function(req, res){
