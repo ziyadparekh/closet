@@ -20,12 +20,12 @@ var sessionOptions = {
   resave: true,
   saveUninitialized: true,
   cookie: {
-    domain: '.closet.co',
     maxAge: 3600 * 1000 * 24 * 31
   }
 };
 
 //Routes & API
+var Identity = require('./application/lib/identity');
 var index = require('./application/routes/index');
 
 process.on('uncaughtException', function(err){
@@ -39,15 +39,16 @@ app.set('view engine', 'html');
 app.use(errorHandler({ showStack: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser('t2obo2!'));
 
 if (process.env.PORT) {
-    app.use(morgan('combined'));
-    // TODO:: extend redis store for sessions on prod
-    app.use(session(sessionOptions));
+  app.use(morgan('combined'));
+  // TODO:: extend redis store for sessions on prod
+  app.use(session(sessionOptions));
 } else {
-    app.use(morgan('combined'));
-    app.use(errorHandler({ dumpExceptions: false, showStack: false }));
-    app.use(session(sessionOptions));
+  app.use(morgan('combined'));
+  app.use(errorHandler({ dumpExceptions: false, showStack: false }));
+  app.use(session(sessionOptions));
 }
 
 app.set('views', __dirname + '/views');
@@ -62,7 +63,11 @@ app.get('/status', function (req, res) {
 //routes
 app.get('/login', index.login);
 
-app.post('/login', index.loginUser);
+app.post('/login', Identity.loginUser, index.loginUser);
+
+app.get('/home', index.index);
+
+app.get('/test', index.testSession);
 
 //status
 app.get('/', index.index);

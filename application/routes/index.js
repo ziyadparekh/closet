@@ -25,18 +25,23 @@ exports.login = function(req, res){
         navMenu : topnav.navMenu,
         title: 'Welcome'
     });
+    if (req.session && req.session.user) {
+      // TODO: redirect to edit profile
+      return res.status(200).json(req.session.user).end();
+    }
     res.render('login', js_vars);
 };
 
 exports.loginUser = function (req, res) {
-    var body = { email: req.body.email, password: req.body.password };
-    var opts = _.extend({}, requestOptions, {body: body});
-    request(opts)
-      .then(function (response) {
-        res.send(response.body);
-      }).catch(function (err) {
-        res.send(err.error);
-      });
+    res.redirect("/home");
+};
+
+exports.testSession = function (req, res) {
+  if (req.session.user) {
+    res.status(200).json(req.session.user).end();
+  } else {
+    res.status(403).json({message: "you are not authorized to view this "});
+  }
 };
 
 exports.index = function(req, res){
@@ -44,9 +49,8 @@ exports.index = function(req, res){
         navMenu : topnav.navMenu,
         title: 'Welcome'
     });
-    if (req && req.user) {
-        var user = req.user;
-        js_vars.user = user
+    if (req.session && req.session.user) {
+      js_vars.user = req.session.user;
     }
     res.render('home', js_vars);
 };
