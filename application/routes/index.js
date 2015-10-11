@@ -33,7 +33,7 @@ exports.login = function(req, res){
 };
 
 exports.loginUser = function (req, res) {
-    res.redirect("/home");
+    res.status(200).json({redirect: "/home"}).end();
 };
 
 exports.testSession = function (req, res) {

@@ -17,7 +17,8 @@ const LoginFormConfig = {
         label: "Email",
         labelClassName: "col-sm-3",
         wrapperClassName: "col-sm-6",
-        placeholder: "Email address"
+        placeholder: "Email address",
+        ref: "email"
       },
       {
         displayName: "Input",
@@ -25,7 +26,8 @@ const LoginFormConfig = {
         label: "Password",
         labelClassName: "col-sm-3",
         wrapperClassName: "col-sm-6",
-        placeholder: "Password"
+        placeholder: "Password",
+        ref: "password"
       }
     ],
     buttons: [

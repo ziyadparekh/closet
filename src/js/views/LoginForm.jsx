@@ -1,5 +1,6 @@
 "use strict";
 
+import * as _ from "underscore";
 import * as React from "react";
 import { Input, Well, ButtonInput, Alert } from "react-bootstrap";
 import * as config from 'configs/LoginFormConfig';
@@ -7,9 +8,17 @@ import * as config from 'configs/LoginFormConfig';
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.store.getInitialState();
+    this.state = this.props.store.getState();
   }
-
+  componentDidMount() {
+    this.props.store.bind("change", this.storeUpdated.bind(this));
+  }
+  componentWillUnmount() {
+    this.props.store.unbind("change", this.storeUpdated.bind(this));
+  }
+  storeUpdated() {
+    this.setState(this.props.store.getState());
+  }
   getHeader() {
     return (
       <header>
@@ -35,6 +44,7 @@ export class LoginForm extends React.Component {
       return (
         <ButtonInput
           key={i}
+          onClick={this.submitForm.bind(this)}
           wrapperClassName={button.wrapperClassName}
           value={button.value}
           bsStyle={button.bsStyle} />
@@ -49,6 +59,7 @@ export class LoginForm extends React.Component {
       return (
         <Input
           key={i}
+          ref={input.ref}
           type={input.type}
           label={input.label}
           labelClassName={input.labelClassName}
@@ -66,6 +77,19 @@ export class LoginForm extends React.Component {
         Your login credentials were incorrect, please try again
       </Alert>
     );
+  }
+  submitForm() {
+    this.props.store.dispatcher.dispatch({
+      actionType: "loginUser",
+      value: this.getData()
+    });
+  }
+  getData() {
+    let data = {};
+    _.each(this.refs, function (node, i) {
+      data[i] = node.getInputDOMNode().value;
+    });
+    return data;
   }
   render() {
     return (
